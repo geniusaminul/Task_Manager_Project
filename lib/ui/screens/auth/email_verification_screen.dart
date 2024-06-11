@@ -1,18 +1,19 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:task_manager/ui/screens/auth/pin_verification_screen.dart';
 import 'package:task_manager/ui/utility/app_colors.dart';
 import 'package:task_manager/ui/widgets/background_widget.dart';
 
-class SignInScreen extends StatefulWidget {
-  const SignInScreen({super.key});
+class EmailVerificationScreen extends StatefulWidget {
+  const EmailVerificationScreen({super.key});
 
   @override
-  State<SignInScreen> createState() => _SignInScreenState();
+  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
   final TextEditingController _emailTEController = TextEditingController();
-  final TextEditingController _passwordTEController = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +27,12 @@ class _SignInScreenState extends State<SignInScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 80,
+                    height: 120,
                   ),
-                  Text('Get Started With',
+                  Text('Your Email Address',
                       style: Theme.of(context).textTheme.titleLarge),
+                  Text('A 6 digit verification pin will send to your email address',
+                      style: Theme.of(context).textTheme.titleSmall),
                   const SizedBox(
                     height: 20,
                   ),
@@ -39,20 +42,13 @@ class _SignInScreenState extends State<SignInScreen> {
                       hintText: 'Email',
                     ),
                   ),
+
+
                   const SizedBox(
-                    height: 8,
-                  ),
-                  TextFormField(
-                    controller: _passwordTEController,
-                    decoration: const InputDecoration(
-                      hintText: 'Password',
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8,
+                    height: 16,
                   ),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: _onTapEmailVerifyButton,
                       child: const Icon(Icons.arrow_circle_right_outlined)),
                   const SizedBox(
                     height: 24,
@@ -60,25 +56,19 @@ class _SignInScreenState extends State<SignInScreen> {
                   Center(
                     child: Column(
                       children: [
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Forget Password ?',
-                            style: TextStyle(color: Colors.black38),
-                          ),
-                        ),
+
                         RichText(
                           text:  TextSpan(
                             style: const TextStyle(
-                                color: Colors.black,
+                                color: AppColors.headingColor,
                                 fontWeight: FontWeight.w600,
                                 letterSpacing: .4),
-                            text: "Don't have an account",
+                            text: "Have account?",
                             children: [
                               TextSpan(
                                 recognizer: TapGestureRecognizer()
-                                  ..onTap = () {},
-                                text: '  Sign up',
+                                  ..onTap = _onTapBackSignIn,
+                                text: '  Sign in',
                                 style: const TextStyle(
                                   color: AppColors.themeColor,
                                 ),
@@ -98,10 +88,22 @@ class _SignInScreenState extends State<SignInScreen> {
     );
   }
 
+  void _onTapEmailVerifyButton() {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PinVerificationScreen(),
+        ));
+  }
+
+  void _onTapBackSignIn(){
+    Navigator.pop(context);
+  }
+
   @override
   void dispose() {
     super.dispose();
     _emailTEController.dispose();
-    _passwordTEController.dispose();
+
   }
 }
