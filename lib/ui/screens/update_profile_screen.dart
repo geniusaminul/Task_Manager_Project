@@ -127,4 +127,5 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
     _mobileTEController.dispose();
     _passTEController.dispose();
   }
+
 }
