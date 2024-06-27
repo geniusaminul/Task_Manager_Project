@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/models/task_model.dart';
 
 import '../utility/app_colors.dart';
 class TaskItem extends StatelessWidget {
   const TaskItem({
-    super.key,
+    super.key, required this.taskModel,
   });
-
+   final TaskModel taskModel;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,8 +16,8 @@ class TaskItem extends StatelessWidget {
           borderRadius: BorderRadius.circular(6)),
       child: ListTile(
         title: Text(
-          "Title will be here",
-          style: TextStyle(
+         taskModel.title ?? '',
+          style: const TextStyle(
               color: Colors.black,
               fontWeight: FontWeight.bold,
               fontSize: 16),
@@ -25,12 +26,12 @@ class TaskItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Description will be here',
-              style: TextStyle(color: Colors.black87),
+              taskModel.description ?? '',
+              style: const TextStyle(color: Colors.black87),
             ),
             Text(
-              '08/5/2024',
-              style: TextStyle(
+             'Date: ${taskModel.createdDate ?? ''}',
+              style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w600),
             ),
@@ -39,10 +40,10 @@ class TaskItem extends StatelessWidget {
               children: [
                 Chip(
                   label: Text(
-                    'New',
-                    style: TextStyle(color: Colors.white),
+                    taskModel.status ?? 'New',
+                    style: const TextStyle(color: Colors.white),
                   ),
-                  padding: EdgeInsets.symmetric(
+                  padding: const EdgeInsets.symmetric(
                       vertical: 1, horizontal: 10),
                   backgroundColor: Colors.blue,
                   elevation: 0,
@@ -54,8 +55,8 @@ class TaskItem extends StatelessWidget {
                 ),
                 ButtonBar(
                   children: [
-                    IconButton(onPressed: () {}, icon: Icon(Icons.edit, color: AppColors.themeColor,)),
-                    IconButton(onPressed: () {}, icon: Icon(Icons.delete, color: Colors.red,)),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.edit, color: AppColors.themeColor,)),
+                    IconButton(onPressed: () {}, icon: const Icon(Icons.delete, color: Colors.red,)),
                   ],
                 )
               ],

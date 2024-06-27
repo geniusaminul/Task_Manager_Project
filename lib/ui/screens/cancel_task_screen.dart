@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:task_manager/data/models/task_model.dart';
 
 import '../widgets/task_item.dart';
 
@@ -19,7 +20,7 @@ class _CancellTaskScreenState extends State<CancellTaskScreen> {
             child: ListView.builder(
               itemCount: 6,
               itemBuilder: (context, index) {
-                return const TaskItem();
+              //  return TaskItem(taskModel: newTaskList[index]);
               },
             ),
           )),
