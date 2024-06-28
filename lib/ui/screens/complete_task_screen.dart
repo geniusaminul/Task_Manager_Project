@@ -29,20 +29,30 @@ class _CompleteTaskScreenState extends State<CompleteTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  Expanded(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
-            child: Visibility(
-              visible: _completeTaskInProgress == false,
-              replacement: const CenterCircularProgressIndicator(),
-              child: ListView.builder(
-                itemCount: completeTaskList.length,
-                itemBuilder: (context, index) {
-                 return TaskItem(taskModel: completeTaskList[index],);
-                },
-              ),
-            ),
-          ),),
+      body:  Column(
+        children: [
+          Expanded(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(8, 8, 8, 0),
+                child: Visibility(
+                  visible: _completeTaskInProgress == false,
+                  replacement: const CenterCircularProgressIndicator(),
+                  child: ListView.builder(
+                    itemCount: completeTaskList.length,
+                    itemBuilder: (context, index) {
+                    return TaskItem(
+                      taskModel: completeTaskList[index],
+                      onUpdateTask: () {
+                        _getCompleteTasks();
+
+                      },
+                    );
+                  },
+                  ),
+                ),
+              ),),
+        ],
+      ),
     );
   }
 
