@@ -9,5 +9,9 @@ class Urls{
   static const String cancelTasks ='$_baseUrl/listTaskByStatus/Cancel';
   static const String taskStatusCount ='$_baseUrl/taskStatusCount';
   static String deleteTask(String id) =>'$_baseUrl/deleteTask/$id';
-  static String updateTask(String id) =>'$_baseUrl/updateTaskStatus/$id/status';
+  static String updateTask(String id, String status) =>'$_baseUrl/updateTaskStatus/$id/$status';
+  static String profileUpdate  ='$_baseUrl/profileUpdate';
+  static String recoverVerifyEmail(String email)  =>'$_baseUrl/RecoverVerifyEmail/$email';
+  static String recoverEmailOtp(String email, String otp)  =>'$_baseUrl/RecoverVerifyOTP/$email/$otp';
+  static String resetPassword = '$_baseUrl/RecoverResetPass';
 }

@@ -45,7 +45,8 @@ class NetworkCaller{
     }
   }
 
-  static Future<NetworkResponse> postRequest(String url, {Map<String, dynamic>? body}) async {
+  static Future<NetworkResponse> postRequest(String url,
+      {Map<String, dynamic>? body}) async {
     try {
      debugPrint(url);
      debugPrint(body.toString());

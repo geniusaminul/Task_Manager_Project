@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:task_manager/ui/controllers/auth_controller.dart';
 import 'package:task_manager/ui/screens/auth/sign_in_screen.dart';
@@ -8,12 +10,23 @@ import '../utility/app_colors.dart';
 AppBar profileAppBar(context, [bool fromUpdateProfile = false]) {
   return AppBar(
     backgroundColor: AppColors.themeColor,
-    leading: const Padding(
-      padding: EdgeInsets.all(8.0),
-      child: CircleAvatar(
+    leading:  Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        width: 40,
+          height: 40,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            image: DecorationImage(
+              image: MemoryImage(
+                scale: 1,
+                  base64Decode(AuthController.userData?.photo ?? ''),
 
 
-      ),
+              )
+            )
+          ),
+         ),
     ),
     title: GestureDetector(
 

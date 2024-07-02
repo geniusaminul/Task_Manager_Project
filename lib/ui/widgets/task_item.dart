@@ -84,7 +84,7 @@ class _TaskItemState extends State<TaskItem> {
                             icon: const Icon(Icons.edit),
                             onSelected: (String selectedValue) {
                               dropdownValue = selectedValue;
-                              _updateTaskStatus();
+                              _updateTaskStatus(dropdownValue);
                               if (mounted) {
                                 setState(() {});
                               }
@@ -143,14 +143,14 @@ class _TaskItemState extends State<TaskItem> {
     }
   }
 
-  Future<void> _updateTaskStatus() async {
+  Future<void> _updateTaskStatus(String value) async {
     _updateTaskInProgress = true;
     if (mounted) {
       setState(() {});
     }
 
     NetworkResponse response = await NetworkCaller.getRequest(
-        Urls.updateTask(widget.taskModel.sId!));
+        Urls.updateTask(widget.taskModel.sId!, value));
     if (response.isSuccess) {
       widget.onUpdateTask();
     } else {
